@@ -1,0 +1,254 @@
+/* ============================================================
+   BLOCK LOCK — styling
+   ------------------------------------------------------------
+   Colors live as CSS variables in :root so the whole look can be
+   changed by editing a handful of lines up here.
+
+   TRY THIS! Change --accent to a different color and reload.
+   ============================================================ */
+
+:root {
+  --frame-bg-1: #05170d;
+  --frame-bg-2: #0c2a17;
+  --cabinet: #0f3a20;
+  --cabinet-edge: #1c5a34;
+  --accent: #ffc145;
+  --heart: #9b5de5;
+  --text: #f2fff4;
+  --text-muted: #bfe8cd;
+  --danger: #ff5d5d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: radial-gradient(circle at 50% -10%, var(--frame-bg-2), var(--frame-bg-1) 65%);
+  color: var(--text);
+  font-family: "Baloo 2", system-ui, sans-serif;
+}
+
+.cabinet {
+  width: min(1680px, calc(100vw - 32px)); /* 3x the original game-screen size */
+  background: linear-gradient(180deg, var(--cabinet), #082414);
+  border: 1px solid var(--cabinet-edge);
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03) inset, 0 30px 60px rgba(0, 0, 0, 0.55),
+    0 0 60px rgba(255, 193, 69, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.hearts {
+  display: flex;
+  gap: 4px;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.heart {
+  color: var(--heart);
+  text-shadow: 0 0 8px rgba(155, 93, 229, 0.7);
+}
+
+.heart--lost {
+  filter: grayscale(1) brightness(0.6);
+  text-shadow: none;
+}
+
+.level-label {
+  font-family: "Press Start 2P", monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+}
+
+.progress-track {
+  height: 10px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--cabinet-edge);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--heart), var(--accent));
+  transition: width 0.15s linear;
+}
+
+.screen-wrap {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--cabinet-edge);
+  box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.3) inset;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #4caf6e;
+}
+
+.title-screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: rgba(5, 20, 12, 0.7);
+  transition: opacity 0.5s ease;
+}
+
+.title-screen--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.title-drop {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(28px, 8vw, 44px);
+  color: var(--accent);
+  text-shadow: 0 0 18px rgba(255, 193, 69, 0.6), 0 6px 0 #7a5300;
+  animation: dropIn 0.9s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+
+@keyframes dropIn {
+  0% {
+    transform: translateY(-220px);
+    opacity: 0;
+  }
+  70% {
+    transform: translateY(12px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.title-hint {
+  font-size: 13px;
+  color: var(--text-muted);
+  opacity: 0;
+  animation: fadeIn 0.6s ease 0.9s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 24px;
+  text-align: center;
+  background: rgba(5, 15, 10, 0.9);
+}
+
+.overlay[hidden] {
+  display: none;
+}
+
+.overlay h2 {
+  font-family: "Press Start 2P", monospace;
+  font-size: 18px;
+  margin: 0;
+  color: var(--accent);
+}
+
+.overlay p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+  max-width: 32ch;
+}
+
+button {
+  font-family: "Baloo 2", system-ui, sans-serif;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+.primary-button {
+  font-family: "Press Start 2P", monospace;
+  font-size: 12px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #241800;
+  box-shadow: 0 6px 0 #a8792a;
+}
+
+.primary-button:active {
+  transform: translateY(3px);
+  box-shadow: 0 3px 0 #a8792a;
+}
+
+.controls-hint {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 12px;
+  margin: 0;
+}
+
+.tap-button {
+  align-self: center;
+  width: 140px;
+  padding: 14px 0;
+  border-radius: 14px;
+  background: rgba(255, 193, 69, 0.15);
+  border: 1px solid var(--cabinet-edge);
+  color: var(--accent);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  touch-action: manipulation;
+}
+
+.tap-button:active {
+  background: rgba(255, 193, 69, 0.3);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tap-button {
+    /* Only hide it for a real mouse/trackpad (a laptop or desktop).
+       A screen-width check would wrongly hide this on a tablet too —
+       an iPad is "wide" but has no physical spacebar, so it still
+       needs this button. Touch devices of any size keep it. */
+    display: none;
+  }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BLOCK LOCK</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Baloo+2:wght@500;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="cabinet">
+    <div class="hud">
+      <div class="hearts" id="hearts"></div>
+      <span class="level-label" id="level-label">LEVEL 1 / 10</span>
+    </div>
+
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+
+    <div class="screen-wrap">
+      <canvas id="game-screen" width="2700" height="1140"></canvas>
+
+      <div class="title-screen" id="title-screen">
+        <h1 class="title-drop">BLOCK LOCK</h1>
+        <p class="title-hint">Press SPACE to start</p>
+      </div>
+
+      <div class="overlay" id="overlay" hidden>
+        <h2 id="overlay-title">Ready?</h2>
+        <p id="overlay-message">You're running across a glass roof &mdash; every 30 seconds a pane breaks somewhere ahead, and if you don't jump it in time you fall straight through. Also watch for open pits, swinging wrecking balls, fallen rock piles, and dropped bombs. Steel beams are safe to land on &mdash; use them to jump higher. Look out for speed-boost pads too &mdash; ride one and you'll rocket 3x faster for 5 seconds, straight into a ramp that launches you even higher than a jump. Grab the first-aid kit if you dare!</p>
+        <button class="primary-button" id="overlay-button">Start</button>
+      </div>
+    </div>
+
+    <p class="controls-hint">SPACE to jump &middot; the glass roof breaks every 30s &middot; wrecking balls, rock piles, and bombs are deadly, beams are safe &middot; boost pads + ramps launch you sky-high &middot; 3 lives for the whole run (grab the first-aid kit for a 4th!)</p>
+
+    <button class="tap-button" id="tap-button">TAP TO JUMP</button>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
